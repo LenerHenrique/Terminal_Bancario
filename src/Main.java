@@ -14,7 +14,7 @@ public class Main {
 
         System.out.println("Nome: " + nomeCliente);
         System.out.println("Conta: " + tipoConta);
-        System.out.println("Saldo: " + saldo);
+        System.out.println("Saldo: " + String.format("%.2f", saldo));
 
         System.out.println("\n***************************************");
 
@@ -24,55 +24,59 @@ public class Main {
             exibirMenu();
             opcao = scan.nextInt();
 
-            if (opcao == 1){
-                consultarSaldo(saldo);
-            }
-            else if (opcao == 2) {
-                System.out.println("Informe o valor a receber: ");
-                double valorRecebido = scan.nextDouble();
-                saldo =  depositar(saldo, valorRecebido);
-                System.out.println("Saldo atualizado R$ " + saldo);
-            }
-            else if (opcao == 3) {
-                System.out.println("Informe o Valor a tranferir:");
-                double valorSacar = scan.nextDouble();
-                saldo = sacar(saldo, valorSacar);
-                System.out.println("Saldo atualizado R$ " + saldo);
-            }
-            else if (opcao != 4) {
-                System.out.println("Opção invalida!");
-            }
+          switch (opcao) {
+              case 1:
+                  consultarSaldo(saldo);
+                  break;
+              case 2:
+                  System.out.print("Digite o valor a ser depositado: ");
+                  double valorDeposito = scan.nextDouble();
+                  saldo = depositar(saldo, valorDeposito);
+                  System.out.println("Deposito realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", saldo));
+                  break;
+              case 3:
+                  System.out.print("Informe o valor a sacar: ");
+                  double valorSaque = scan.nextDouble();
+                  double saldoAnterior = saldo;
+                  saldo = sacar(saldo, valorSaque);
+                  if (saldo != saldoAnterior){
+                      System.out.println("Saque realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", saldo));
+                  }
+                  break;
+              case 4:
+
+                  break;
+              default:
+                  System.out.println("Opção inválida!");
+                  break;
+          }
 
         }
         System.out.println("\nPrograma encerrado. Obrigado por usar nossos serviços!");
         scan.close();
     }
     public static void exibirMenu(){
-        System.out.println("1- Consultar saldos");
-        System.out.println("2- Receber valor");
-        System.out.println("3- Transferir valor");
+        System.out.println("\nOperações");
+        System.out.println("1- Consultar saldo");
+        System.out.println("2- Depositar valor");
+        System.out.println("3- Sacar valor");
         System.out.println("4- Sair");
-        System.out.println("Digite a opção desejada:");
+        System.out.print("\nDigite a opção desejada: ");
     }
     public static void consultarSaldo(double saldo){
-        System.out.println("O saldo Atual é R$ " + saldo);
+        System.out.println("O saldo Atual é R$ " + String.format("%.2f", saldo));
     }
     public static double depositar(double saldoAtual, double valorDeposito){
         return saldoAtual + valorDeposito;
     }
     public static double sacar(double saldoAtual, double valorSaque) {
-
         if (saldoAtual < valorSaque){
-            System.out.println("Não há saldo Suficiente para fazer essa tranferência.");
+            System.out.println("Erro: Saldo insuficiente.");
             return saldoAtual;
         }
-        else {
-            double novoSaldo = saldoAtual - valorSaque;
+        return saldoAtual - valorSaque;
 
-            return novoSaldo;
-            }
-
-        }
+    }
 }
 
 
