@@ -18,5 +18,15 @@ public class Main {
 
         System.out.println("\n***************************************");
 
+        int opcao = 0;
+
+        System.out.println("1- Consultar saldos");
+        System.out.println("2- Receber valor");
+        System.out.println("3- Transferir valor");
+        System.out.println("4- Sair");
+        System.out.println("Digite a opção desejada:");
+        opcao = scan.nextInt();
+
+        System.out.println("Opção escolhida: " + opcao);
     }
 }
