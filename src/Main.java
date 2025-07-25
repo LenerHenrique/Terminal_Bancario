@@ -5,16 +5,19 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        String nomeCliente = "Lener";
-        String tipoConta = "Corrente";
-        double saldo = 2500.00;
+        Conta conta = new Conta();
+
+        conta.nomeCliente = "Lener";
+        conta.tipoConta = "Corrente";
+        conta.saldo = 2500.00;
+
 
         System.out.println("***************************************");
         System.out.println("\nDADOS INICIAIS DO CLIENTE:\n");
 
-        System.out.println("Nome: " + nomeCliente);
-        System.out.println("Conta: " + tipoConta);
-        System.out.println("Saldo: " + String.format("%.2f", saldo));
+        System.out.println("Nome: " + conta.nomeCliente);
+        System.out.println("Conta: " + conta.tipoConta);
+        System.out.println("Saldo: " + String.format("%.2f", conta.saldo ));
 
         System.out.println("\n***************************************");
 
@@ -26,21 +29,21 @@ public class Main {
 
           switch (opcao) {
               case 1:
-                  consultarSaldo(saldo);
+                  consultarSaldo(conta.saldo);
                   break;
               case 2:
                   System.out.print("Digite o valor a ser depositado: ");
                   double valorDeposito = scan.nextDouble();
-                  saldo = depositar(saldo, valorDeposito);
-                  System.out.println("Deposito realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", saldo));
+                  conta.saldo = depositar(conta.saldo, valorDeposito);
+                  System.out.println("Deposito realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", conta.saldo));
                   break;
               case 3:
                   System.out.print("Informe o valor a sacar: ");
                   double valorSaque = scan.nextDouble();
-                  double saldoAnterior = saldo;
-                  saldo = sacar(saldo, valorSaque);
-                  if (saldo != saldoAnterior){
-                      System.out.println("Saque realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", saldo));
+                  double saldoAnterior = conta.saldo;
+                  conta.saldo = sacar(conta.saldo, valorSaque);
+                  if (conta.saldo != saldoAnterior){
+                      System.out.println("Saque realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", conta.saldo));
                   }
                   break;
               case 4:
