@@ -5,18 +5,13 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        Conta conta = new Conta("Lener", "Corrente", 2500.00)
+        Conta conta = new Conta("Lener", "Corrente", 2500.00, 1001, 123456);
 
 
 
 
-        System.out.println("***************************************");
-        System.out.println("\nDADOS INICIAIS DO CLIENTE:\n");
 
-        System.out.println("Nome: " + conta.getNomeCliente());
-        System.out.println("Conta: " + conta.getTipoConta());
-
-        conta.consultarSaldo();
+        conta.exibirExtrato();
         System.out.println("\n***************************************");
 
         int opcao = 0;
@@ -27,7 +22,7 @@ public class Main {
 
           switch (opcao) {
               case 1:
-                  conta.consultarSaldo();
+                  conta.exibirExtrato();
                   break;
               case 2:
                   System.out.print("Digite o valor a ser depositado: ");
@@ -52,7 +47,7 @@ public class Main {
     }
     public static void exibirMenu(){
         System.out.println("\nOperações");
-        System.out.println("1- Consultar saldo");
+        System.out.println("1- Exibir extrato");
         System.out.println("2- Depositar valor");
         System.out.println("3- Sacar valor");
         System.out.println("4- Sair");
