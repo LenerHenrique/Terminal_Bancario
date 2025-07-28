@@ -17,8 +17,8 @@ public class Main {
 
         System.out.println("Nome: " + conta.nomeCliente);
         System.out.println("Conta: " + conta.tipoConta);
-        System.out.println("Saldo: " + String.format("%.2f", conta.saldo ));
 
+        conta.consultarSaldo();
         System.out.println("\n***************************************");
 
         int opcao = 0;
@@ -29,25 +29,19 @@ public class Main {
 
           switch (opcao) {
               case 1:
-                  consultarSaldo(conta.saldo);
+                  conta.consultarSaldo();
                   break;
               case 2:
                   System.out.print("Digite o valor a ser depositado: ");
                   double valorDeposito = scan.nextDouble();
-                  conta.saldo = depositar(conta.saldo, valorDeposito);
-                  System.out.println("Deposito realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", conta.saldo));
+                  conta.depositar(valorDeposito);
                   break;
               case 3:
                   System.out.print("Informe o valor a sacar: ");
                   double valorSaque = scan.nextDouble();
-                  double saldoAnterior = conta.saldo;
-                  conta.saldo = sacar(conta.saldo, valorSaque);
-                  if (conta.saldo != saldoAnterior){
-                      System.out.println("Saque realizado com sucesso. Novo saldo: R$ " + String.format("%.2f", conta.saldo));
-                  }
+                  conta.sacar(valorSaque);
                   break;
               case 4:
-
                   break;
               default:
                   System.out.println("Opção inválida!");
@@ -66,20 +60,7 @@ public class Main {
         System.out.println("4- Sair");
         System.out.print("\nDigite a opção desejada: ");
     }
-    public static void consultarSaldo(double saldo){
-        System.out.println("O saldo Atual é R$ " + String.format("%.2f", saldo));
-    }
-    public static double depositar(double saldoAtual, double valorDeposito){
-        return saldoAtual + valorDeposito;
-    }
-    public static double sacar(double saldoAtual, double valorSaque) {
-        if (saldoAtual < valorSaque){
-            System.out.println("Erro: Saldo insuficiente.");
-            return saldoAtual;
-        }
-        return saldoAtual - valorSaque;
 
-    }
 }
 
 
