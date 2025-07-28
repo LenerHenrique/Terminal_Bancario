@@ -1,7 +1,28 @@
 public class Conta {
-    String nomeCliente;
-    String tipoConta;
-    double saldo;
+    private String nomeCliente;
+    private String tipoConta;
+    private double saldo;
+
+    public Conta() {
+    }
+
+    public Conta(String nomeCliente, String tipoConta, double saldo) {
+        this.nomeCliente = nomeCliente;
+        this.tipoConta = tipoConta;
+        this.saldo = saldo;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public String getTipoConta() {
+        return tipoConta;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
 
 
     public void consultarSaldo (){

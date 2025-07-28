@@ -5,18 +5,16 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        Conta conta = new Conta();
+        Conta conta = new Conta("Lener", "Corrente", 2500.00)
 
-        conta.nomeCliente = "Lener";
-        conta.tipoConta = "Corrente";
-        conta.saldo = 2500.00;
+
 
 
         System.out.println("***************************************");
         System.out.println("\nDADOS INICIAIS DO CLIENTE:\n");
 
-        System.out.println("Nome: " + conta.nomeCliente);
-        System.out.println("Conta: " + conta.tipoConta);
+        System.out.println("Nome: " + conta.getNomeCliente());
+        System.out.println("Conta: " + conta.getTipoConta());
 
         conta.consultarSaldo();
         System.out.println("\n***************************************");
