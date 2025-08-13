@@ -9,11 +9,11 @@ public class Conta {
     private List<Transacao> historico;
 
     private String nomeCliente;
-    private String tipoConta;
+    private TipoConta tipoConta; // MUDANÇA AQUI
     private double saldo;
 
 
-    public Conta(String nomeCliente, String tipoConta, double saldoInicial, int agencia, int numero) {
+    public Conta(String nomeCliente, TipoConta tipoConta, double saldoInicial, int agencia, int numero) { // MUDANÇA AQUI
         this.nomeCliente = nomeCliente;
         this.tipoConta = tipoConta;
         this.saldo = saldoInicial;
@@ -25,7 +25,7 @@ public class Conta {
 
 
     public String getNomeCliente() { return this.nomeCliente; }
-    public String getTipoConta() { return this.tipoConta; }
+    public TipoConta getTipoConta() { return this.tipoConta; } // MUDANÇA AQUI
     public double getSaldo() { return this.saldo; }
     public int getAgencia() { return this.agencia; }
     public int getNumero() { return this.numero; }
@@ -58,11 +58,26 @@ public class Conta {
         }
     }
 
+    public void transferir(double valor, Conta contaDestino){
+        if (valor <= 0) {
+            System.out.println("Erro: O valor da transferência deve ser positivo.");
+        }
+        else if (this.saldo < valor) {
+            System.out.println("Erro: Saldo insuficiente.");
+        }
+        else {
+            this.saldo -= valor;
+            contaDestino.saldo += valor;
+            this.registrarTransacao("TRANSF. ENVIADA ", valor);
+            contaDestino.registrarTransacao("TRANSF RECEBIDA" , valor);
+            System.out.println("Transferência de R$ " + String.format("%.2f", valor) + " para a conta " + contaDestino.getNumero() + " realizada com sucesso.");
+        }
+    }
 
     public void exibirExtrato() {
         System.out.println("\n--- EXTRATO BANCÁRIO ---");
         System.out.println("Cliente: " + this.nomeCliente);
-        System.out.println("Agência: " + this.agencia + " | Conta: " + this.numero);
+        System.out.println("Agência: " + this.agencia + " | Conta: " + this.numero + " (" + this.tipoConta.getDescricao() + ")"); // MUDANÇA AQUI
         System.out.println("--------------------------");
 
         if (this.historico.isEmpty()) {
